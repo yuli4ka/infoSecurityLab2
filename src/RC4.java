@@ -14,8 +14,8 @@ public class RC4 {
         }
     }
 
-    public int encrypt(byte[] in, int in_offset, byte[] out,
-                       int out_offset, int len) {
+    public void crypt(byte[] in, int in_offset, byte[] out,
+                      int out_offset, int len) {
         int x = this.x;
         int y = this.y;
         byte[] s = this.s;
@@ -31,24 +31,11 @@ public class RC4 {
         }
         this.x = x;
         this.y = y;
-        return 0;
     }
 
-    public int decrypt(byte[] in, int in_offset, byte[] out,
-                       int out_offset, int len) {
-        return encrypt(in, in_offset, out, out_offset, len);
-    }
-
-    public byte[] encrypt(byte[] in) {
+    public byte[] crypt(byte[] in) {
         byte[] results = new byte[in.length];
-        encrypt(in, 0, results, 0, in.length);
+        crypt(in, 0, results, 0, in.length);
         return results;
     }
-
-    public byte[] decrypt(byte[] in) {
-        byte[] results = new byte[in.length];
-        decrypt(in, 0, results, 0, in.length);
-        return results;
-    }
-
 }
